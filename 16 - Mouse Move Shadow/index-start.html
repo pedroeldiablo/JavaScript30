@@ -7,8 +7,18 @@
 <body>
 
   <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
+    <h1 contenteditable>WOAH!</h1>
   </div>
+
+  <div class="hero2">
+    <h1 contenteditable>WOAH!</h1>
+  </div>
+
+  <!-- <div class="hero3">
+    <h1 contenteditable>🔥WOAH!</h1>
+  </div> -->
+
+
 
   <style>
   html {
@@ -16,21 +26,98 @@
     font-family: sans-serif;
   }
 
-  .hero {
-    min-height: 100vh;
+  .hero, .hero2, .hero3 {
+    min-height: 30vh;
     display:flex;
     justify-content: center;
     align-items: center;
-    color:black;
+    color:white;
   }
 
   h1 {
     text-shadow: 10px 10px 0 rgba(0,0,0,1);
     font-size: 100px;
+    /*mix-blend-mode: difference;*/
+    mix-blend-mode; darken;
   }
   </style>
 
 <script>
+
+const hero = document.querySelector('.hero');
+const text = hero.querySelector('h1');
+const walk = 5; //100px
+
+// const hero = document.querySelector('.hero');
+// const text = hero.querySelector('h1');
+// const walk = 500; // 100px
+
+function shadow(e) {
+  // equivalent
+  // const width = hero.offsetWidth;
+  // const height = hero.offsetHeight;
+
+  const {offsetWidth: width, offsetHeight: height } = hero;
+  let { offsetX: x, offsetY: y } = e;
+
+  //console.log(this, e.target);
+  // this is alway the hero. The thing you listened on. e.target will change the thing it triggered on.
+
+  if(this !== e.target) {
+    x = x + e.target.offsetLeft;
+    y = y + e.target.offsetTop;
+
+  }
+
+
+  const xWalk = Math.round((x / width * walk) - (walk / 2));
+
+  // console.log( "Walk ", xWalk);
+  const yWalk = Math.round((y / height * walk) - (walk / 2));
+
+
+
+  text.style.textShadow = `
+    ${xWalk}px ${yWalk}px 0 rgba(255, 0, 255, 0.7),
+    ${xWalk * -1}px ${yWalk}px 0 rgba(0,255,255,0.7),
+    ${yWalk}px ${xWalk * -1}px 0 rgba(0,255,0,0.7),
+    ${yWalk * -1}px ${xWalk}px 0 rgba(0,0,255,0.7)
+    `;
+
+  console.log(x, y);
+
+
+}
+
+hero.addEventListener('mousemove', shadow);
+
+const hero2 = document.querySelector('.hero2');
+const text2 = hero2.querySelector('h1');
+const walk2 = 20; // 100px
+
+function shadow2(e) {
+  const { offsetWidth: width, offsetHeight: height } = hero2;
+  let { offsetX: x, offsetY: y } = e;
+
+  if (this !== e.target) {
+    x = x + e.target.offsetLeft;
+    y = y + e.target.offsetTop;
+  }
+
+  const xWalk2 = Math.round((x / width * walk2) - (walk2 / 2));
+  const yWalk2 = Math.round((y / height * walk2) - (walk2 / 2));
+
+  text2.style.textShadow = `
+    ${xWalk2}px ${yWalk2}px 0 rgba(255,0,255,0.7),
+    ${xWalk2 * -1}px ${yWalk2}px 0 rgba(0,255,255,0.7),
+    ${yWalk2}px ${xWalk2 * -1}px 0 rgba(0,255,0,0.7),
+    ${yWalk2 * -1}px ${xWalk2}px 0 rgba(0,0,255,0.7)
+  `;
+
+}
+
+hero2.addEventListener('mousemove', shadow2);
+
 </script>
 </body>
 </html>
