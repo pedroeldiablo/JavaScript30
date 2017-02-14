@@ -67,8 +67,30 @@ body {
 .item:nth-child(9n+8) { background: darkslateblue;}
 .item:nth-child(9n+9) { background: rebeccapurple;}
 
-.item:nth-child(even) { transform: scaleX(1.31) rotateY(40deg); }
+.item:nth-child(even) { transform: scaleX(1.41) rotateY(40deg); }
 .item:nth-child(odd) { transform: scaleX(1.31) rotateY(-40deg); }
+
+/*
+combining x ad y rotations
+.item:nth-child(even) { transform: scaleX(1.41) rotateY(40deg) rotateX(40deg); }
+.item:nth-child(odd) { transform: scaleX(1.31) rotateX(-40deg); }*/
+
+/* angles card on X axis
+.item:nth-child(even) { transform: scaleX(1.41) rotateX(40deg); }
+.item:nth-child(odd) { transform: scaleX(1.31) rotateX(-40deg); }
+*/
+
+/*creates a stacked card effect
+.item{
+  transform: scaleX(1.41) rotateY(40deg);
+}
+*/
+
+/*puts card on edge at center of screen
+.item {
+  transform: scaleX(1.31) rotateY(90deg);
+}
+*/
 
 .wrap {
   width: auto;
